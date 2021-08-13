@@ -16,7 +16,7 @@ const StyledHero = styled.section`
   justify-content: center;
   color: ${vars.colorWhite};
   background-image: url(${({ bg }) => bg});
-  background-color: ${vars.colorAlmostBlack};
+  background-color: rgba(0,0,0, .6);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
