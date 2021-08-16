@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import vars from '../../vars'
-import logoSrc from '../../../content/assets/logo-final.png'
+import logoSrc from '../../../content/assets/highresLogo.png'
 
 const LogoWrapper = styled.div`
   background-color: ${vars.colorRed};
@@ -36,6 +36,11 @@ const LogoWrapper = styled.div`
     border-width: 0 5.5rem 5.5rem 0;
     right: 0;
     border-color: transparent ${vars.colorBlack} transparent transparent;
+  }
+
+  & img {
+    max-width: 252px;
+    
   }
 
   @media (min-width: ${vars.breakpointExtraSmall}) {
