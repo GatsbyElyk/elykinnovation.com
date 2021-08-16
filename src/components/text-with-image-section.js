@@ -83,10 +83,10 @@ export const fragment = graphql`
       altText
       localFile {
         childImageSharp {
-          desktop: fixed(width: 572) {
+          desktop: fixed(width: 572, quality: 100) {
             ...GatsbyImageSharpFixed_noBase64
           }
-          mobile: fixed(width: 350) {
+          mobile: fixed(width: 350, quality: 100) {
             ...GatsbyImageSharpFixed_noBase64
           }
         }
