@@ -137,14 +137,21 @@ const GalleryGrid = styled.div`
     .item:nth-child(8),
     .item:nth-child(11),
     .item:nth-child(12),
-    .item:nth-child(13) {
+    .item:nth-child(13),
+    .item:nth-child(16),
+    .item:nth-child(17),
+    .item:nth-child(18) {
       grid-column: span 2;
     }
 
     .item:nth-child(4),
     .item:nth-child(5),
     .item:nth-child(9),
-    .item:nth-child(10) {
+    .item:nth-child(10),
+    .item:nth-child(14),
+    .item:nth-child(15),
+    .item:nth-child(19),
+    .item:nth-child(20) {
       grid-column: span 3;
     }
   }
