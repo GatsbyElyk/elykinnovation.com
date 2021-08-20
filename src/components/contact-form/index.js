@@ -129,6 +129,11 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                     )}
                   </SubmitButton>
                 </div>
+                <googleText>
+                  <p>This site is protected by reCAPTCHA and the Google
+                  <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                  <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+                </googleText>
               </StyledForm>
             ) : (
               <StyledForm as="div">
@@ -166,7 +171,10 @@ const StyledForm = styled(Form)`
 const reCaptcha = styled.div`
    visibility: hidden;
 `
-
+const googleText = styled.div`
+text-align: center;
+margin-top: 1em;
+`
 
 const SubmitButton = styled.button`
   display: block;
