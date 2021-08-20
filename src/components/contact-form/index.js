@@ -37,11 +37,12 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
   return (
     <Section bg={sectionBackgroundColor}>
       <Helmet>
+        <reCaptcha>
         <script
           key="recaptcha"
           type="text/javascript"
           src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-        />
+        /></reCaptcha>
       </Helmet>
       <Container>
         <Formik
@@ -161,6 +162,11 @@ const StyledForm = styled(Form)`
     max-width: 75%;
   }
 `
+
+const reCaptcha = styled.div`
+   visibility: hidden;
+`
+
 
 const SubmitButton = styled.button`
   display: block;
