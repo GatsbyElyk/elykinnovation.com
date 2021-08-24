@@ -37,12 +37,11 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
   return (
     <Section bg={sectionBackgroundColor}>
       <Helmet>
-        <Recaptcha>
         <script
           key="recaptcha"
           type="text/javascript"
           src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-        /></Recaptcha>
+        />
       </Helmet>
       <Container>
         <Formik
@@ -130,9 +129,22 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                   </SubmitButton>
                 </div>
                 <Googletext>
-                  <p>This site is protected by reCAPTCHA and the Google
-                  <a href="https://policies.google.com/privacy" target="blank"> Privacy Policy</a> and
-                  <a href="https://policies.google.com/terms" target="blank"> Terms of Service</a> apply.</p>
+                  <p>
+                    This site is protected by reCAPTCHA and the Google
+                    <a
+                      href="https://policies.google.com/privacy"
+                      target="blank"
+                    >
+                      {' '}
+                      Privacy Policy
+                    </a>{' '}
+                    and
+                    <a href="https://policies.google.com/terms" target="blank">
+                      {' '}
+                      Terms of Service
+                    </a>{' '}
+                    apply.
+                  </p>
                 </Googletext>
               </StyledForm>
             ) : (
@@ -168,15 +180,8 @@ const StyledForm = styled(Form)`
   }
 `
 
-const Recaptcha = styled.div`
-   visibility: hidden;
-`
 const Googletext = styled.div`
-  
   margin-top: 1rem;
-  
-  
- 
 
   p {
     font-size: ${vars.fontSizeTextSmall};
@@ -184,7 +189,6 @@ const Googletext = styled.div`
     max-width: 100%;
     text-align: center;
   }
-
 `
 
 const SubmitButton = styled.button`
