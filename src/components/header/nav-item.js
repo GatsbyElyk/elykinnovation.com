@@ -55,7 +55,7 @@ const NavItem = ({ secondary, children, itemProps, href, currentPageSlug }) => {
       $secondary={secondary}
       className={currentItem ? 'current' : null}
     >
-      <StyledLink $secondary={secondary} {...itemProps} to={href}>
+      <StyledLink $secondary={secondary} {...itemProps} to={href} tabIndex={0}>
         {children}
       </StyledLink>
     </StyledNavItem>

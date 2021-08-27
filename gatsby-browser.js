@@ -21,6 +21,7 @@ export const wrapRootElement = ({ element }) => {
   )
 }
 
+
 const ArrowWrapper = styled.div`
   max-height: 4rem;
   max-width: 4rem;

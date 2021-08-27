@@ -147,3 +147,13 @@ small {
 .grecaptcha-badge {
   visibility: hidden;
 }
+
+a[href='#reach-skip-nav']:focus {
+  border: 0;
+  clip: auto;
+  height: auto;
+  width: auto;
+  padding: 1em;
+  z-index: 9999999;
+  background: white;
+}
