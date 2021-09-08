@@ -6,7 +6,7 @@ import './src/global.scss'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import 'react-image-lightbox/style.css'
 import ScrollToTop from 'react-scroll-up'
-import Arrowscroll from './content/assets/Scroll-Top-Arrow.png'
+import Arrowscroll from './content/assets/elyk-back-to-top.png'
 
 export const wrapRootElement = ({ element }) => {
   return (
@@ -14,7 +14,7 @@ export const wrapRootElement = ({ element }) => {
       {element}
       <ScrollToTop showUnder={160}>
         <ArrowWrapper>
-          <img src={Arrowscroll} alt="A dog smiling in a party hat" />
+          <img src={Arrowscroll} alt="Back to top arrow" />
         </ArrowWrapper>
       </ScrollToTop>
     </>
