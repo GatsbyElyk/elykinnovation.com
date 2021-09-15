@@ -122,6 +122,11 @@ const IconWrapper = styled.div`
       arrow === 'right' ? 'rotateX(0)' : 'rotateX(180deg)'};
   }
 `
+
+const UpArrow = styled.div`
+transform: rotate(90deg);
+`
+
 // This component could use a refactor
 // Each style of button should be abstracted into its own component
 // so this component could just focus on doing the switch to show the correct button.
@@ -151,13 +156,22 @@ const Button = ({
                   </IconWrapper>
                 </>
               ) : (
+                arrowDirection === 'up' ? (
+                  <>
+                    <TextWrapper className="text-wrapper">{children}</TextWrapper>
+                    <IconWrapper arrow={arrowDirection} btn={buttonStyle}>
+                      <UpArrow><img src={arrowLeftSrc} alt="" /></UpArrow>
+                    </IconWrapper>
+                  </>
+                ) : (
+                
                 <>
                   <IconWrapper arrow={arrowDirection} btn={buttonStyle}>
                     <img src={arrowLeftSrc} alt="" />
                   </IconWrapper>
                   <TextWrapper className="text-wrapper">{children}</TextWrapper>
                 </>
-              )}
+              ))}
             </>
           ) : (
             <>{children}</>

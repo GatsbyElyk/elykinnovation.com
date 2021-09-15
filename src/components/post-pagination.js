@@ -19,6 +19,7 @@ const PaginationButtons = styled.div`
   > * + * {
     margin-top: 1rem;
     width: 100%;
+    margin-left: 2rem;
   }
 
   a,
@@ -42,7 +43,7 @@ const PaginationButtons = styled.div`
   }
 `
 
-const PostPagination = ({ next, previous }) => {
+const PostPagination = ({ next, previous, home }) => {
   const nextClientName =
     next?.acfPostFields?.launchAnnouncementFields?.clientName
   const previousClientName =
@@ -64,6 +65,16 @@ const PostPagination = ({ next, previous }) => {
           "You're all caught up!"
         )}
       </div>
+      <div>
+      <Button
+            elementType="link"
+            buttonStyle="outline"
+            href="/portfolio"
+            arrowDirection="up"
+          >
+            {`Portfolio Home`}
+          </Button>
+        </div>
       <div>
         {previous ? (
           <Button
