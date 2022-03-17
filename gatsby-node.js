@@ -107,11 +107,11 @@ const createWordpressPages = async ({ pages, gatsbyUtilities }) => {
   const primaryMenuPageIds = graphqlResult.data.primaryMenu.nodes.map(node =>
     node.menuItems.nodes.map(node => node.connectedNode.node.databaseId)
   )[0]
-  if (primaryMenuPageIds === null) primaryMenuPageIds = []
+  
   return Promise.all(
     pages.map(({ page }) => {
       const isPrimaryPage = 
-        (primaryMenuPageIds) ? primaryMenuPageIds.includes(page.databaseId) : page.uri === '/'
+            primaryMenuPageIds.includes(page.databaseId) || page.uri === '/'
 
       if (page.uri === postsPageUri) {
         return null
