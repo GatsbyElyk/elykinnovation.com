@@ -111,8 +111,10 @@ const createWordpressPages = async ({ pages, gatsbyUtilities }) => {
   return Promise.all(
     pages.map(({ page }) => {
       const isPrimaryPage = 
-            primaryMenuPageIds?.includes(page.databaseId) || page.uri === '/'
-
+            // primaryMenuPageIds.includes(page.databaseId) || page.uri === '/'
+            //primaryMenuPageIds.includes(page.databaseId) || page.uri === '/'
+primaryMenuPageIds = (primaryMenuPageIds) ? primaryMenuPageIds.includes(page.databaseId) : page.uri === '/'
+      
       if (page.uri === postsPageUri) {
         return null
       }
