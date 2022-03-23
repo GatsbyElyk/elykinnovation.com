@@ -17,6 +17,7 @@
   "dependencies": {
     "@reach/skip-nav": "^0.16.0",
     "@react-icons/all-files": "^4.1.0",
+    "@sideway/address": "^4.1.4",
     "babel-plugin-polished": "^1.1.0",
     "babel-plugin-styled-components": "^1.12.0",
     "formik": "^2.2.9",
@@ -38,6 +39,7 @@
     "gatsby-transformer-sharp": "^3.4.0",
     "help": "^3.0.2",
     "html-react-parser": "^1.2.6",
+    "joi": "^17.6.0",
     "node-fetch": "^2.6.7",
     "patch-package": "^6.4.7",
     "polished": "^1.9.3",
