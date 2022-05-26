@@ -47,7 +47,7 @@ const PortfolioCategoryItem = ({
   return (
     <CategoryItem>
       <ImageWrapper>
-        <a href={projectLink} rel="noopener noreferrer">
+        <a href={projectLink} target="_blank" rel="noopener noreferrer">
           <Image
             backgroundColor={vars.colorDarkRed}
             fluid={image}
