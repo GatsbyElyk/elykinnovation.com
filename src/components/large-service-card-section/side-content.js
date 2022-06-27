@@ -1,6 +1,5 @@
 import React from 'react'
 import parse from 'html-react-parser'
-import useDimensions from 'react-use-dimensions'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 
@@ -126,8 +125,6 @@ const SideContent = ({
   cardPosition,
   extraPadding,
 }) => {
-  const [ref, { width, height }] = useDimensions()
-
   return sideContentType === 'image' ? (
     <SideImage>
       <Image
@@ -141,12 +138,10 @@ const SideContent = ({
     </SideImage>
   ) : (
     <SideTextWrapper position={cardPosition}>
-      <SideText ref={ref} position={cardPosition} padding={extraPadding}>
+      <SideText position={cardPosition} padding={extraPadding}>
         {sideText && parse(sideText)}
       </SideText>
       <SideTextBg
-        $width={width}
-        $height={height}
         className={cardPosition === 'left' ? 'square' : 'circle'}
         aria-hidden
       />

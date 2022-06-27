@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
-import useDimensions from 'react-use-dimensions'
 
 import vars from '../vars'
 
@@ -16,8 +15,8 @@ const ImageWrapper = styled.div`
 const ImageBg = styled.div`
   display: none;
   position: absolute;
-  width: ${({ $width }) => $width}px;
-  height: ${({ $height }) => $height}px;
+  width: 100%;
+  height: 100%;
   border: solid ${vars.pixel} ${vars.colorGreen};
   border-radius: ${vars.borderRadiusLarge};
   top: 0;
@@ -38,10 +37,8 @@ const ImageWithStroke = ({
   rounded,
   imageBorderEffect,
 }) => {
-  const [ref, { width, height }] = useDimensions()
-
   return (
-    <ImageWrapper $rounded={rounded} ref={ref}>
+    <ImageWrapper $rounded={rounded}>
       {fixed ? (
         <Image
           backgroundColor={imageBorderEffect ? backgroundColor : 'transparent'}
@@ -55,9 +52,7 @@ const ImageWithStroke = ({
           alt={altText}
         />
       )}
-      {imageBorderEffect && (
-        <ImageBg $width={width} $height={height} aria-hidden />
-      )}
+      {imageBorderEffect && <ImageBg aria-hidden />}
     </ImageWrapper>
   )
 }

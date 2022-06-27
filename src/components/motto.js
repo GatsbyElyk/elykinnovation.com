@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import parse from 'html-react-parser'
 import { lighten } from 'polished'
-import useDimensions from 'react-use-dimensions'
 
 import { Container, Section, SectionHeading } from './styled/global'
 
@@ -68,9 +67,9 @@ const MottoContent = styled.div`
     align-items: center;
     justify-content: center;
     margin-left: ${({ $post }) => ($post ? '1.5rem' : '1rem')};
-    p {
-      font-size: ${vars.fontSizeTextLarge};
-    }
+    border-left: solid 0.125rem ${vars.colorGreen};
+    padding-left: 2rem;
+    font-size: ${vars.fontSizeTextLarge};
   }
 `
 
@@ -80,7 +79,7 @@ const MottoDivider = styled.div`
   @media (min-width: ${vars.breakpointLarge}) {
     display: block;
     width: 0.125rem;
-    height: ${({ $height }) => $height + 'px'};
+    height: 100%;
     background-color: ${vars.colorGreen};
   }
 `
@@ -92,11 +91,9 @@ const Motto = ({
   sectionBackgroundColor,
   launchPost,
 }) => {
-  const [containerRef, { height }] = useDimensions()
-
   return (
     <Section bg={sectionBackgroundColor}>
-      <Container ref={containerRef}>
+      <Container>
         <MottoWrapper>
           <MottoHeadingWrapper>
             <MottoHeading
@@ -111,7 +108,7 @@ const Motto = ({
               {mainHeadingText}
             </MottoHeading>
           </MottoHeadingWrapper>
-          <MottoDivider $height={height} />
+          <MottoDivider />
           <MottoContent $post={launchPost} bg={sectionBackgroundColor}>
             <div>{paragraphContent && parse(paragraphContent)}</div>
           </MottoContent>

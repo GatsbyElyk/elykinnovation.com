@@ -2,7 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Form, Formik } from 'formik'
 import styled from 'styled-components'
-import Loader from 'react-loader-spinner'
+import { TailSpin } from 'react-loader-spinner'
 import { graphql } from 'gatsby'
 
 import { Section, Container, ErrorMessage, SoloHeading } from '../styled/global'
@@ -117,11 +117,11 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      <Loader
-                        type="Oval"
+                      <TailSpin
                         color={vars.colorWhite}
                         height={30}
                         width={30}
+                        ariaLabel="Loading"
                       />
                     ) : (
                       submitButtonText
@@ -148,14 +148,12 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                 </Googletext>
               </StyledForm>
             ) : (
-              <StyledForm as="div">
-                <ThankYou>
-                  <SoloHeading color={vars.colorAlmostBlack}>
-                    Thank You
-                  </SoloHeading>
-                  <p>{serverState.message}</p>
-                </ThankYou>
-              </StyledForm>
+              <ThankYou>
+                <SoloHeading color={vars.colorAlmostBlack}>
+                  Thank You
+                </SoloHeading>
+                <p>{serverState.message}</p>
+              </ThankYou>
             )
           }
         </Formik>
@@ -192,7 +190,9 @@ const Googletext = styled.div`
 `
 
 const SubmitButton = styled.button`
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   border: none;
   border-radius: ${vars.borderRadiusSmall};

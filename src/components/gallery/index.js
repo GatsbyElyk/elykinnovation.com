@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
-import Lightbox from 'react-image-lightbox'
+import Lightbox from 'react-18-image-lightbox'
 
 import { Section, Container, SectionHeading } from '../styled/global'
 
@@ -56,7 +56,7 @@ const Gallery = ({
     []
   )
 
-  const handleItemClicked = idx => {
+  const handleItemClicked = (idx) => {
     setCurrGalleryIndex(idx)
     setShowLightbox(true)
   }
@@ -81,19 +81,15 @@ const Gallery = ({
         {showLightbox && (
           <Lightbox
             mainSrc={lightboxData[currGalleryIndex].src}
-            nextSrc={
-              lightboxData[(currGalleryIndex + 1) % lightboxData.length].src
-            }
+            nextSrc={lightboxData[(currGalleryIndex + 1) % lightboxData.length].src}
             prevSrc={
-              lightboxData[
-                (currGalleryIndex + lightboxData.length - 1) % images.length
-              ].src
+              lightboxData[(currGalleryIndex + lightboxData.length - 1) % images.length]
+                .src
             }
             onCloseRequest={() => setShowLightbox(false)}
             onMovePrevRequest={() =>
               setCurrGalleryIndex(
-                (currGalleryIndex + lightboxData.length - 1) %
-                  lightboxData.length
+                (currGalleryIndex + lightboxData.length - 1) % lightboxData.length
               )
             }
             onMoveNextRequest={() =>

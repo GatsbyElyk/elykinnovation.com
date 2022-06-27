@@ -11,7 +11,7 @@ const chunk = require(`lodash/chunk`)
  *
  * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
  */
-exports.createPages = async gatsbyUtilities => {
+exports.createPages = async (gatsbyUtilities) => {
   // Query our posts from the GraphQL server
   const posts = await getPosts(gatsbyUtilities)
   const pages = await getPages(gatsbyUtilities)
@@ -43,9 +43,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) => {
           path: post.uri,
 
           // use the appropriate post template as the page component
-          component: path.resolve(
-            `./src/templates/wp-launch-announcement-post.js`
-          ),
+          component: path.resolve(`./src/templates/wp-launch-announcement-post.js`),
 
           // `context` is available in the template as a prop and
           // as a variable in GraphQL.
@@ -59,8 +57,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) => {
             // We're re-assigning graphql's built-in 'next' to previous and vice-versa because it makes more
             // visual sense in our UI this way.
             previousPostId:
-              next &&
-              next.acfPostFields.postType === post.acfPostFields.postType
+              next && next.acfPostFields.postType === post.acfPostFields.postType
                 ? next.id
                 : null,
             nextPostId:
@@ -104,14 +101,16 @@ const createWordpressPages = async ({ pages, gatsbyUtilities }) => {
   `)
 
   const postsPageUri = graphqlResult.data.wpPage.uri
-  const primaryMenuPageIds = graphqlResult.data.primaryMenu.nodes.map(node =>
-    node.menuItems.nodes.map(node => node.connectedNode.node.databaseId)
+  const primaryMenuPageIds = graphqlResult.data.primaryMenu.nodes.map((node) =>
+    node.menuItems.nodes.map((node) => node.connectedNode.node.databaseId)
   )[0]
-  
+
   return Promise.all(
     pages.map(({ page }) => {
-      const isPrimaryPage = (primaryMenuPageIds) ? primaryMenuPageIds.includes(page.databaseId) : page.uri === '/'
-            // primaryMenuPageIds.includes(page.databaseId) || page.uri === '/'
+      const isPrimaryPage = primaryMenuPageIds
+        ? primaryMenuPageIds.includes(page.databaseId)
+        : page.uri === '/'
+      // primaryMenuPageIds.includes(page.databaseId) || page.uri === '/'
 
       if (page.uri === postsPageUri) {
         return null
@@ -165,7 +164,7 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
     postsChunkedIntoArchivePages.map(async (_posts, index) => {
       const pageNumber = index + 1
 
-      const getPagePath = page => {
+      const getPagePath = (page) => {
         if (page === 1 && page <= totalPages) {
           return `${postsPageUri}`
         } else if (page > 1 && page <= totalPages) {

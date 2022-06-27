@@ -40,6 +40,7 @@ const TextWithImageSection = ({
     mobile: image?.localFile?.childImageSharp?.mobile,
     altText: image?.altText,
   }
+  console.log(imageData)
   return (
     <Section bg={sectionBackgroundColor} angled={angledBackgroundTransition}>
       <Container>

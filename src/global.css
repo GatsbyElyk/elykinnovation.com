@@ -1,0 +1,132 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 85%;
+  font-weight: 300;
+  width: 100vw;
+  overflow-x: hidden;
+}
+@media (min-width: 992px) {
+  html {
+    font-size: 100%;
+ }
+}
+body {
+  font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+.body-wrapper {
+  background-color: #141414;
+  color: #eaeaea;
+}
+.body-wrapper main a {
+  text-decoration: none;
+  opacity: 1;
+}
+.body-wrapper main ul li {
+  background-image: url("../content/assets/bullet.png"
+ );
+}
+.body-wrapper main .check li {
+  background-image: url("../content/assets/check-green.png"
+ ) !important;
+  background-position: top 0.12em left !important;
+}
+@media (min-width: 62em) {
+  .body-wrapper main .check li {
+    background-position: top 0.25em left !important;
+ }
+}
+.body-wrapper.secondary {
+  background-color: #e8ebeb;
+  color: #0a0a0a;
+}
+.body-wrapper.secondary main ul li {
+  background-image: url("../content/assets/bullet-black.png"
+ );
+}
+.body-wrapper.secondary main ul.check li {
+  background-image: url("../content/assets/check-green.png");
+  background-position: top 0.25em left;
+}
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  color: #e8e8e7;
+  margin: 0 0 1rem;
+}
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1.125rem;
+  max-width: 75ch;
+}
+@media (min-width: 62em) {
+  p {
+    line-height: 1.75;
+ }
+}
+img {
+  max-width: 100%;
+}
+main ol {
+  font-size: 1.125rem;
+  font-family: inherit;
+  margin-bottom: 1rem;
+  padding-left: 1em;
+}
+main ol li {
+  line-height: 1.5;
+}
+main ul {
+  padding-left: 1em;
+  font-size: 1.125rem;
+  font-family: inherit;
+  list-style: none;
+  margin-bottom: 1rem;
+}
+main ul li {
+  padding-left: 1.75em;
+  margin-left: -1em;
+  line-height: 1.5;
+  background-repeat: no-repeat;
+  background-position: top 0.5em left;
+  max-width: 75ch;
+}
+main ul li + li {
+  margin-top: 0.5em;
+}
+main section {
+  padding: 4rem 0;
+}
+@media (min-width: 992px) {
+  main section {
+    padding: 3rem 0;
+ }
+}
+span.green-subtext {
+  font-size: 1.125rem;
+  display: block;
+  color: #148588;
+  text-transform: uppercase;
+}
+strong {
+  font-weight: 700;
+}
+small {
+  font-size: 0.85rem;
+}
+.grecaptcha-badge {
+  visibility: hidden;
+}
+a[href="#reach-skip-nav"]:focus {
+  border: 0;
+  clip: auto;
+  height: auto;
+  width: auto;
+  padding: 1em;
+  z-index: 9999999;
+  background: white;
+}
