@@ -148,12 +148,14 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                 </Googletext>
               </StyledForm>
             ) : (
-              <ThankYou>
-                <SoloHeading color={vars.colorAlmostBlack}>
-                  Thank You
-                </SoloHeading>
-                <p>{serverState.message}</p>
-              </ThankYou>
+              <StyledForm as="div">
+                <ThankYou>
+                  <SoloHeading color={vars.colorAlmostBlack}>
+                    Thank You
+                  </SoloHeading>
+                  <p>{serverState.message}</p>
+                </ThankYou>
+              </StyledForm>
             )
           }
         </Formik>
