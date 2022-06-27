@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useBreakpoint } from 'gatsby-plugin-breakpoints'
 import parse from 'html-react-parser'
 
 import { FooterSection } from './index'
@@ -71,7 +70,7 @@ const AccessibilityStatement = styled.div`
 `
 
 const AccessibilitySection = () => {
-  const breakpoints = useBreakpoint()
+  // const breakpoints = useBreakpoint()
   const data = useStaticQuery(graphql`
     query AccessibilityFooterData {
       wpSiteFooter(id: { eq: "cG9zdDozMTA=" }) {
@@ -86,21 +85,24 @@ const AccessibilitySection = () => {
   const { accessibilityPolicy } = data?.wpSiteFooter?.footerFields
 
   return (
-    <FooterSection className="md" color={vars.colorRed}>
+    <FooterSection className='md' color={vars.colorRed}>
       <Container>
         <AccessibilityRow>
-          {breakpoints.lg && (
+          {/* {breakpoints.lg && (
             <IconWrapper>
               <A11yIcon />
             </IconWrapper>
-          )}
+          )} */}
           <AccessibilityHeading>
             <span>Accessibility Policy</span>
-            {!breakpoints.lg && (
+            <IconWrapper>
+              <A11yIcon />
+            </IconWrapper>
+            {/* {!breakpoints.lg && (
               <IconWrapper>
                 <A11yIcon />
               </IconWrapper>
-            )}
+            )} */}
           </AccessibilityHeading>
 
           <AccessibilityStatement>

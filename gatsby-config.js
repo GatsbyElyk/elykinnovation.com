@@ -2,183 +2,43 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const siteUrl = `http://localhost:9000`
-
-/**
- * 👋 Hey there!
- * This file is the starting point for your new WordPress/Gatsby site! 🚀
- * For more information about what this file is and does, see
- * https://www.gatsbyjs.com/docs/gatsby-config/
- *
- */
 module.exports = {
   siteMetadata: {
-    siteUrl,
+    title: `Elyk Innovation`,
+    siteUrl: `https://www.elykinnvation.com`,
   },
-  flags: {
-    FUNCTIONS: true,
-  },
-  /**
-   * Adding plugins to this array adds them to your Gatsby site.
-   *
-   * Gatsby has a rich ecosystem of plugins.
-   * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
-   */
   plugins: [
     {
-      /**
-       * First up is the WordPress source plugin that connects Gatsby
-       * to your WordPress site.
-       *
-       * visit the plugin docs to learn more
-       * https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-source-wordpress
-       *
-       */
-      resolve: `gatsby-source-wordpress`,
+      resolve: 'gatsby-source-wordpress',
       options: {
-        // the only required plugin option for WordPress is the GraphQL url.
-        url:
-          process.env.WPGRAPHQL_URL ||
-          `https://backoffice.elykinnovation.com/graphql`,
-        // these options slow down the bulld process,
-        // but are helpful if your graphql server is getting overloaded while building
-        schema: {
-          requestConcurrency: 5,
-          previewRequestConcurrency: 2,
-          perPage: 15,
-        },
-        type: {
-          MediaItem: {
-            localFile: {
-              requestConcurrency: 5,
-            },
+        url: 'https://backoffice.elykinnovation.com/graphql',
+        auth: {
+          htaccess: {
+            username: process.env.WP_AUTH_USERNAME,
+            password: process.env.WP_AUTH_PASSWORD,
           },
         },
       },
     },
-
-    /**
-     * We need this plugin so that it adds the "File.publicURL" to our site
-     * It will allow us to access static url's for assets like PDF's
-     *
-     * See https://www.gatsbyjs.org/packages/gatsby-source-filesystem/ for more info
-     */
+    'gatsby-plugin-styled-components',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        name: `assets`,
-        path: `${__dirname}/content/assets`,
+        trackingId: 'UA-22451062-16',
       },
     },
-
-    /**
-     * The following two plugins are required if you want to use Gatsby image
-     * See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
-     * if you're curious about it.
-     */
-    `gatsby-plugin-image`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
-      // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `Gatsby Starter WordPress Blog`,
-        short_name: `GatsbyJS & WP`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/favicon.png`,
+        name: 'images',
+        path: './src/images/',
       },
-    },
-
-    // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
-    `gatsby-plugin-react-helmet`,
-
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-sass`,
-    {
-      resolve: `gatsby-plugin-breakpoints`,
-      options: {
-        queries: {
-          sm: `(min-width: 36em)`,
-          md: `(min-width: 48em)`,
-          lg: `(min-width: 62em)`,
-          xl: `(min-width: 75em)`,
-        },
-      },
-    },
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-polished`,
-    `gatsby-plugin-image`,
-    // Sitemap is generated at: "https://[yoursite]/sitemap/sitemap-index.xml"
-    // The custom query and resolvers below add the
-    // <lastmod> value to the sitemap, which is what
-    // Google cares about. This config can be copy/pasted,
-    // it won't change between projects.
-    {
-      resolve: 'gatsby-plugin-sitemap',
-      options: {
-        query: `
-        {
-          allSitePage {
-            nodes {
-              path
-            }
-          }
-          allWpContentNode(filter: {nodeType: {in: ["Post", "Page"]}}) {
-            nodes {
-              ... on WpPost {
-                uri
-                modifiedGmt
-              }
-              ... on WpPage {
-                uri
-                modifiedGmt
-              }
-            }
-          }
-        }
-      `,
-        resolveSiteUrl: () => siteUrl,
-        resolvePages: ({
-          allSitePage: { nodes: allPages },
-          allWpContentNode: { nodes: allWpNodes },
-        }) => {
-          const wpNodeMap = allWpNodes.reduce((acc, node) => {
-            const { uri } = node
-            acc[uri] = node
-
-            return acc
-          }, {})
-
-          return allPages.map(page => {
-            return { ...page, ...wpNodeMap[page.path] }
-          })
-        },
-        serialize: ({ path, modifiedGmt }) => {
-          return {
-            url: path,
-            lastmod: modifiedGmt,
-          }
-        },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          'UA-22451062-16', // Google Analytics / GA
-        ],
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: false,
-        },
-      },
+      __key: 'images',
     },
   ],
 }

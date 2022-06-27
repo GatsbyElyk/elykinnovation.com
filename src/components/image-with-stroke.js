@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
-import useDimensions from 'react-use-dimensions'
 
 import vars from '../vars'
 
@@ -38,10 +37,14 @@ const ImageWithStroke = ({
   rounded,
   imageBorderEffect,
 }) => {
-  const [ref, { width, height }] = useDimensions()
+  const imageRef = useRef()
+
+  if (!imageRef.current) return null
+
+  const imageRect = imageRef.current.getBoundingClientRect()
 
   return (
-    <ImageWrapper $rounded={rounded} ref={ref}>
+    <ImageWrapper $rounded={rounded} ref={imageRef}>
       {fixed ? (
         <Image
           backgroundColor={imageBorderEffect ? backgroundColor : 'transparent'}
@@ -56,7 +59,7 @@ const ImageWithStroke = ({
         />
       )}
       {imageBorderEffect && (
-        <ImageBg $width={width} $height={height} aria-hidden />
+        <ImageBg $width={imageRect.width} $height={imageRect.height} aria-hidden />
       )}
     </ImageWrapper>
   )

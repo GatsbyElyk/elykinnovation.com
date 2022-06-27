@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import parse from 'html-react-parser'
-import useDimensions from 'react-use-dimensions'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 
@@ -60,8 +59,7 @@ const SideText = styled.div`
     border-color: ${({ position }) =>
       position === 'left' ? vars.colorGreen : 'transparent'};
     border-radius: ${vars.borderRadiusLarge};
-    padding: ${({ position, padding }) =>
-      position === 'left' ? '4em 2em' : padding};
+    padding: ${({ position, padding }) => (position === 'left' ? '4em 2em' : padding)};
 
     h2,
     h3,
@@ -126,27 +124,28 @@ const SideContent = ({
   cardPosition,
   extraPadding,
 }) => {
-  const [ref, { width, height }] = useDimensions()
+  const textRef = useRef()
+
+  if (!textRef.current) return null
+
+  const textRect = textRef.current.getBoundingClientRect()
 
   return sideContentType === 'image' ? (
     <SideImage>
       <Image
-        backgroundColor="transparent"
-        fixed={[
-          mobile,
-          { ...desktop, media: `(min-width: ${vars.breakpointLarge})` },
-        ]}
+        backgroundColor='transparent'
+        fixed={[mobile, { ...desktop, media: `(min-width: ${vars.breakpointLarge})` }]}
         alt={altText}
       />
     </SideImage>
   ) : (
     <SideTextWrapper position={cardPosition}>
-      <SideText ref={ref} position={cardPosition} padding={extraPadding}>
+      <SideText ref={textRef} position={cardPosition} padding={extraPadding}>
         {sideText && parse(sideText)}
       </SideText>
       <SideTextBg
-        $width={width}
-        $height={height}
+        $width={textRect.width}
+        $height={textRect.height}
         className={cardPosition === 'left' ? 'square' : 'circle'}
         aria-hidden
       />

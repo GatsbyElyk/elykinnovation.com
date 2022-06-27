@@ -1,9 +1,8 @@
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import parse from 'html-react-parser'
 import { lighten } from 'polished'
-import useDimensions from 'react-use-dimensions'
 
 import { Container, Section, SectionHeading } from './styled/global'
 
@@ -92,7 +91,11 @@ const Motto = ({
   sectionBackgroundColor,
   launchPost,
 }) => {
-  const [containerRef, { height }] = useDimensions()
+  const containerRef = useRef()
+
+  if (!containerRef.current) return null
+
+  const containerRect = containerRef.current.getBoundingClientRect()
 
   return (
     <Section bg={sectionBackgroundColor}>
@@ -107,11 +110,11 @@ const Motto = ({
                   : vars.colorAlmostBlack
               }
             >
-              <span className="green-subtext">{smallGreenHeadingText}</span>
+              <span className='green-subtext'>{smallGreenHeadingText}</span>
               {mainHeadingText}
             </MottoHeading>
           </MottoHeadingWrapper>
-          <MottoDivider $height={height} />
+          <MottoDivider $height={containerRect.height} />
           <MottoContent $post={launchPost} bg={sectionBackgroundColor}>
             <div>{paragraphContent && parse(paragraphContent)}</div>
           </MottoContent>
