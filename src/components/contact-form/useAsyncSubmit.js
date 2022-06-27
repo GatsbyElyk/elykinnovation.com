@@ -6,13 +6,19 @@ const useAsyncSubmit = recaptchaSiteKey => {
 
   const handleSubmit = useCallback(
     (values, actions) => {
-      window.grecaptcha.ready(() => {
-        window.grecaptcha
-          .execute(recaptchaSiteKey, { action: 'submit' })
-          .then(token => {
-            submitData(values, actions, token)
-          })
-      })
+      if (window === undefined) return
+
+      try {
+        window.grecaptcha.ready(() => {
+          window.grecaptcha
+            .execute(recaptchaSiteKey, { action: 'submit' })
+            .then(token => {
+              submitData(values, actions, token)
+            })
+        })
+      } catch (error) {
+        alert(error)
+      }
     },
     [recaptchaSiteKey]
   )

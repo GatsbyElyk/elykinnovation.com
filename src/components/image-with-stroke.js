@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 
@@ -15,8 +15,8 @@ const ImageWrapper = styled.div`
 const ImageBg = styled.div`
   display: none;
   position: absolute;
-  width: ${({ $width }) => $width}px;
-  height: ${({ $height }) => $height}px;
+  width: 100%;
+  height: 100%;
   border: solid ${vars.pixel} ${vars.colorGreen};
   border-radius: ${vars.borderRadiusLarge};
   top: 0;
@@ -37,14 +37,8 @@ const ImageWithStroke = ({
   rounded,
   imageBorderEffect,
 }) => {
-  const imageRef = useRef()
-
-  if (!imageRef.current) return null
-
-  const imageRect = imageRef.current.getBoundingClientRect()
-
   return (
-    <ImageWrapper $rounded={rounded} ref={imageRef}>
+    <ImageWrapper $rounded={rounded}>
       {fixed ? (
         <Image
           backgroundColor={imageBorderEffect ? backgroundColor : 'transparent'}
@@ -58,9 +52,7 @@ const ImageWithStroke = ({
           alt={altText}
         />
       )}
-      {imageBorderEffect && (
-        <ImageBg $width={imageRect.width} $height={imageRect.height} aria-hidden />
-      )}
+      {imageBorderEffect && <ImageBg aria-hidden />}
     </ImageWrapper>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Form, Formik } from 'formik'
 import styled from 'styled-components'
-import * as Loader from 'react-loader-spinner'
+import { TailSpin } from 'react-loader-spinner'
 import { graphql } from 'gatsby'
 
 import { Section, Container, ErrorMessage, SoloHeading } from '../styled/global'
@@ -31,14 +31,15 @@ const INITIAL_FORM_VALUES = {
 
 const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
-  const { handleSubmit, serverState, showForm } = useAsyncSubmit(recaptchaSiteKey)
+  const { handleSubmit, serverState, showForm } =
+    useAsyncSubmit(recaptchaSiteKey)
 
   return (
     <Section bg={sectionBackgroundColor}>
       <Helmet>
         <script
-          key='recaptcha'
-          type='text/javascript'
+          key="recaptcha"
+          type="text/javascript"
           src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
         />
       </Helmet>
@@ -50,35 +51,35 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
         >
           {({ isSubmitting }) =>
             showForm ? (
-              <StyledForm id='contact-form' name='contact'>
+              <StyledForm id="contact-form" name="contact">
                 <TextInputField
                   isRequired
-                  id='name-contact'
-                  name='name'
-                  label='name'
-                  title='Name'
-                  type='text'
+                  id="name-contact"
+                  name="name"
+                  label="name"
+                  title="Name"
+                  type="text"
                 />
                 <TextInputField
                   isRequired
-                  id='email-contact'
-                  name='email'
-                  label='email'
-                  title='Email'
-                  type='email'
+                  id="email-contact"
+                  name="email"
+                  label="email"
+                  title="Email"
+                  type="email"
                 />
                 <TextInputField
-                  id='phone-contact'
-                  name='phone'
-                  label='phone number'
-                  title='Phone Number'
-                  type='phone'
+                  id="phone-contact"
+                  name="phone"
+                  label="phone number"
+                  title="Phone Number"
+                  type="phone"
                 />
                 <SelectField
                   isRequired
-                  type='select'
-                  name='interest'
-                  id='interest-contact'
+                  type="select"
+                  name="interest"
+                  id="interest-contact"
                   choices={[
                     'ADA Compliance',
                     'Website Development',
@@ -92,35 +93,35 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                     'Just Saying "Hey!"',
                     'Release the Kraken!',
                   ]}
-                  label='Area of Interest'
+                  label="Area of Interest"
                 />
                 <TextAreaField
                   isRequired
-                  id='message-contact'
-                  name='message'
-                  label='message'
-                  title='Message'
-                  type='text'
-                  rows='8'
+                  id="message-contact"
+                  name="message"
+                  label="message"
+                  title="Message"
+                  type="text"
+                  rows="8"
                 />
                 <div>
                   {!serverState.ok && (
                     <ErrorMessage>
-                      Error submitting your form. Please try again or contact us at{' '}
-                      <a href='tel:+19049981935'>904.998.1935</a>
+                      Error submitting your form. Please try again or contact us
+                      at <a href="tel:+19049981935">904.998.1935</a>
                     </ErrorMessage>
                   )}
                   <SubmitButton
-                    type='submit'
+                    type="submit"
                     aria-disabled={isSubmitting}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      <Loader
-                        type='Oval'
+                      <TailSpin
                         color={vars.colorWhite}
                         height={30}
                         width={30}
+                        ariaLabel="Loading"
                       />
                     ) : (
                       submitButtonText
@@ -130,12 +131,15 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                 <Googletext>
                   <p>
                     This site is protected by reCAPTCHA and the Google
-                    <a href='https://policies.google.com/privacy' target='blank'>
+                    <a
+                      href="https://policies.google.com/privacy"
+                      target="blank"
+                    >
                       {' '}
                       Privacy Policy
                     </a>{' '}
                     and
-                    <a href='https://policies.google.com/terms' target='blank'>
+                    <a href="https://policies.google.com/terms" target="blank">
                       {' '}
                       Terms of Service
                     </a>{' '}
@@ -144,12 +148,12 @@ const ContactForm = ({ sectionBackgroundColor, submitButtonText }) => {
                 </Googletext>
               </StyledForm>
             ) : (
-              <StyledForm as='div'>
-                <ThankYou>
-                  <SoloHeading color={vars.colorAlmostBlack}>Thank You</SoloHeading>
-                  <p>{serverState.message}</p>
-                </ThankYou>
-              </StyledForm>
+              <ThankYou>
+                <SoloHeading color={vars.colorAlmostBlack}>
+                  Thank You
+                </SoloHeading>
+                <p>{serverState.message}</p>
+              </ThankYou>
             )
           }
         </Formik>
@@ -186,7 +190,9 @@ const Googletext = styled.div`
 `
 
 const SubmitButton = styled.button`
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   border: none;
   border-radius: ${vars.borderRadiusSmall};
