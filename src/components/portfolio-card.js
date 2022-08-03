@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Image from 'gatsby-image'
+import Image from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
 import vars from '../vars'
 
@@ -75,8 +75,8 @@ const ClientNameBacking = styled(CardTag)`
 `
 
 const PortfolioCard = ({ clientImage, clientLink, clientName }) => {
-  //const cardImage = clientImage?.localFile?.childImageSharp?.fluid
-    const cardImage = acfPostFields?.launchAnnouncementFields?.fullHomePageScreenshot?.fluid
+  const cardImage = clientImage?.localFile?.childImageSharp?.fluid
+    //const cardImage = acfPostFields?.launchAnnouncementFields?.fullHomePageScreenshot?.fluid
 
   return (
     <StyledCard>
