@@ -75,7 +75,8 @@ const ClientNameBacking = styled(CardTag)`
 `
 
 const PortfolioCard = ({ clientImage, clientLink, clientName }) => {
-  const cardImage = clientImage?.localFile?.childImageSharp?.fluid
+  //const cardImage = clientImage?.localFile?.childImageSharp?.fluid
+    const cardImage = acfPostFields?.launchAnnouncementFields?.fullHomePageScreenshot?.fluid
 
   return (
     <StyledCard>
