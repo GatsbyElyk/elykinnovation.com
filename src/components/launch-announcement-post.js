@@ -193,7 +193,7 @@ const LaunchAnnouncementPost = ({
                   {servicesIncluded && (
                     <>
                       <SoloHeading color={vars.colorGreen}>
-                        Included Services
+                        Included Features
                       </SoloHeading>
                       <div className="check">{parse(servicesIncluded)}</div>
                     </>
