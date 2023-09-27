@@ -65,10 +65,11 @@ const ArchivePagination = ({ next, previous, totalPages, currentPage }) => {
     {
       wpPage(isPostsPage: { eq: true }) {
         uri
+        link
       }
     }
   `)
-  const postsPageUri = result?.wpPage?.uri
+  const postsPageUri = result?.wpPage?.url || result?.wpPage?.link
 
   return (
     <PaginationRow>
