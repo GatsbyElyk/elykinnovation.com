@@ -150,12 +150,13 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
       }
       wpPage(isPostsPage: {eq: true}) {
         uri
+        link
       }
     }
   `)
 
   const { postsPerPage } = graphqlResult.data.wp.readingSettings
-  const postsPageUri = (graphqlResult.data.wpPage.uri ?? '/jacksonville-website-launch/') || '/jacksonville-website-launch/'
+  const postsPageUri = graphqlResult.data.wpPage.uri || '/jacksonville-website-launch/'
 
   const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
   const totalPages = postsChunkedIntoArchivePages.length
